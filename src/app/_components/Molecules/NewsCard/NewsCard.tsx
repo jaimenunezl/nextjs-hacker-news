@@ -6,6 +6,9 @@ import {
   AiOutlineClockCircle,
 } from 'react-icons/ai';
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 import './NewsCard.css';
 
@@ -57,7 +60,7 @@ function NewsCard({
       <div className="border flex-1 p-4">
         <span className="flex items-center text-gray-500 font-light text-xs">
           <AiOutlineClockCircle className="mr-2 text-xl" />
-          {dayjs(createdAt, 'MM-DD-YYYY').toString()} ago by {author}
+          {dayjs().to(dayjs(createdAt))} by {author}
         </span>
         <h2 className="font-medium text-md mt-2 text-gray-700">{title}</h2>
       </div>
