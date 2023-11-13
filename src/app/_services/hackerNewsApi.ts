@@ -24,9 +24,15 @@ export type News = {
 
 function mapNewsResponseToNewsDTO(newsResponse: NewsResponseDTO) {
   return newsResponse.hits
-    .filter(({ _highlightResult }) => {
-      const { story_url } = _highlightResult;
-      return story_url?.value;
+    .filter(({ objectID, created_at, _highlightResult }) => {
+      const { story_url, story_title, author } = _highlightResult;
+      return (
+        story_url?.value &&
+        objectID &&
+        created_at &&
+        story_title?.value &&
+        author?.value
+      );
     })
     .map((news) => {
       const { author, story_title, story_url } = news._highlightResult;
@@ -44,9 +50,17 @@ export async function getNews(
   category: string = '',
   page: number
 ): Promise<News[]> {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_HOST}/search_by_date?query=${category}&page=${page}`
-  );
+  const url = new URL(process.env.NEXT_PUBLIC_API_HOST + '/search_by_date');
+
+  if (category) {
+    url.searchParams.append('query', category);
+  }
+
+  if (page) {
+    url.searchParams.append('page', page.toString());
+  }
+
+  const response = await fetch(url.toString());
 
   if (!response.ok) {
     throw new Error(response.statusText);

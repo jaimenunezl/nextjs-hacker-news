@@ -1,19 +1,20 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Select, NewsCard } from '../_components';
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { NewsCard, Select } from '../_components';
 import { News, getNews } from '../_services';
 
 export default function Home() {
+  const [category, setCategory] = useState('');
+  const [error, setError] = useState<Error | null>(null);
+  const [newsList, setNewsList] = useState<News[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const currentPage = useRef(0);
+
   const searchParams = useSearchParams();
   const categoryParam: string = searchParams.get('category') || '';
   const pageParam: number = Number(searchParams.get('page')) || 0;
-
-  const [category, setCategory] = useState('');
-  const [newsList, setNewsList] = useState<News[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const currentPage = useRef(pageParam);
 
   const handleRedirect = useCallback((url: string) => {
     window.open(url, '_blank');
@@ -23,39 +24,24 @@ export default function Home() {
     console.log({ id, state });
   }, []);
 
-  // const pathName = usePathname();
-  // const router = useRouter();
-
-  // const createQueryString = (name: string, value: string) => {
-  //   const params = new URLSearchParams();
-  //   params.set(name, value);
-
-  //   return params.toString();
-  // };
-
-  // useEffect(() => {
-  //   if (!category) return;
-
-  //   router.replace(
-  //     pathName +
-  //       '?' +
-  //       createQueryString('category', category) +
-  //       createQueryString('page', currentPage.current.toString()),
-  //     {
-  //       scroll: false,
-  //     }
-  //   );
-  // }, [category]);
-
   useEffect(() => {
     setIsLoading(true);
+    setError(null);
 
     const getData = async () => {
-      const result = await getNews(category, currentPage.current);
-      console.log({ result });
+      let result;
 
-      setNewsList(result);
-      setIsLoading(false);
+      try {
+        result = await getNews(category, currentPage.current);
+        console.log({ result });
+        setNewsList(result);
+      } catch (error: unknown) {
+        error instanceof Error
+          ? setError(error)
+          : setError(new Error('Unknown error'));
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     getData();
@@ -85,6 +71,15 @@ export default function Home() {
         {isLoading && (
           <div className="w-full flex justify-center items-center">
             <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-sky-400"></div>
+          </div>
+        )}
+
+        {error && (
+          <div className="w-full flex justify-center items-center">
+            <div className="text-red-500">
+              {error.message ||
+                'We did not find any news. Try again with another category.'}
+            </div>
           </div>
         )}
 

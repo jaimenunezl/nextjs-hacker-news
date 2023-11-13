@@ -54,7 +54,7 @@ function NewsCard({
 
   return (
     <div
-      className="border border-gray-400 rounded-lg flex cursor-pointer overflow-hidden hover:opacity-70"
+      className="border border-gray-400 rounded-lg flex cursor-pointer overflow-hidden hover:opacity-70 transition-opacity"
       onClick={handleRedirect}
     >
       <div className="border flex-1 p-4">

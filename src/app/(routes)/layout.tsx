@@ -1,18 +1,28 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Header, Switch } from '../_components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function LayoutPage({ children }: { children: React.ReactNode }) {
-  const [active, setActive] = useState('all');
-
+  const [active, setActive] = useState('');
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleChange = (value: string) => {
     setActive(value);
     router.push(value === 'all' ? '/' : '/favorites');
   };
+
+  useEffect(() => {
+    console.log(pathname);
+
+    if (pathname.includes('favorites')) {
+      setActive('my faves');
+    } else {
+      setActive('all');
+    }
+  }, []);
 
   return (
     <div>
