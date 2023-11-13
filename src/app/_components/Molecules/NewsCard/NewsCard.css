@@ -1,0 +1,15 @@
+.fav-active {
+  visibility: visible;
+  animation: heart-full 0.3s ease-in-out alternate;
+  animation-iteration-count: 2;
+}
+
+.fav-inactive {
+  visibility: hidden;
+}
+
+@keyframes heart-full {
+  to {
+    transform: scale(2) translateX(-25%) translateY(-25%);
+  }
+}

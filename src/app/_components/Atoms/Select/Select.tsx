@@ -17,7 +17,7 @@ function Select({
   onChange,
   valueSelected,
 }: SelectProps) {
-  const [currentValue, setCurrentValue] = useState(placeholder);
+  const [currentValue, setCurrentValue] = useState('');
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -38,7 +38,13 @@ function Select({
       onClick={() => setShow(!show)}
     >
       <div className="flex items-center justify-between">
-        <span className="capitalize">{currentValue}</span>
+        <input
+          id="select"
+          type="text"
+          className="capitalize outline-none cursor-pointer placeholder:text-black"
+          placeholder={placeholder}
+          defaultValue={currentValue}
+        />
         {show ? <FaChevronUp /> : <FaChevronDown />}
       </div>
       <div
@@ -56,10 +62,11 @@ function Select({
           >
             {iconUrl && (
               <Image
+                style={{ width: 'auto', height: 'auto' }}
                 className="mr-2"
                 src={iconUrl}
-                width={20}
-                height={20}
+                width={15}
+                height={15}
                 alt={value}
               />
             )}

@@ -1,3 +1,6 @@
-export { default as Header } from './Header/Header';
-export { default as Select } from './Select/Select';
-export { default as Switch } from './Switch/Switch';
+export { default as Select } from './Atoms/Select/Select';
+export { default as Switch } from './Atoms/Switch/Switch';
+export * from './Atoms';
+export { default as Header } from './Molecules/Header/Header';
+export { default as NewsCard } from './Molecules/NewsCard/NewsCard';
+export * from './Molecules';
