@@ -20,13 +20,13 @@ function LayoutPage({ children }: { children: React.ReactNode }) {
     } else {
       setActive('all');
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <div>
       <Header />
 
-      <div className="flex items-center flex-col my-20">
+      <div className="flex items-center flex-col mb-10 mt-10 md:mt-20">
         <Switch
           active={active}
           options={['all', 'my faves']}

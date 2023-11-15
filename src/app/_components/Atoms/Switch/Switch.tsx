@@ -19,7 +19,7 @@ function Switch({ active, options = [], onChange }: Props) {
             key={option}
             className={`${
               option === active ? 'border-sky-400' : 'border-zinc-300'
-            } inline-block w-[100px] text-center  rounded-sm cursor-pointer border-2 hover:border-sky-400 transition-colors capitalize py-1 -ml-[1px]`}
+            } inline-block w-[100px] text-center rounded-sm cursor-pointer border-2 hover:border-sky-400 transition-colors capitalize py-1 -ml-[1px] dark:text-gray-300`}
             onClick={() => handleSelect(option)}
           >
             {option}

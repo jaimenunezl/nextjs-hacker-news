@@ -1,18 +1,18 @@
 'use client';
 
-import { NewsCard, Select } from '@/app/_components';
+import { ErrorMessage, NewsCard, Select, Spinner } from '@/app/_components';
 import { useLocalStorage } from '@/app/_hooks';
 import { News, getNews } from '@/app/_services';
 import { LocalStorageKeys } from '@/app/_shared/enums';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function Home() {
-  const [error, setError] = useState<Error | null>(null);
-  const [currentPage, setCurrentPage] = useState<number>(0);
   const [canPaginate, setCanPaginate] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [error, setError] = useState<Error | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [newsList, setNewsList] = useState<News[]>([]);
   const [newsListWithFav, setNewsListWithFav] = useState<News[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const currentNewsRequest = useRef<NodeJS.Timeout | undefined>();
 
   const { item: favList, updateItem: setFavList } = useLocalStorage<News[]>(
@@ -111,8 +111,8 @@ export default function Home() {
   }, [category, canPaginate]);
 
   return (
-    <div className="mt-5">
-      <header className="w-[240px]">
+    <div className="mt-10 sm:mt-20">
+      <header className="w-full sm:w-[240px]">
         <Select
           placeholder="Select your news"
           options={[
@@ -130,14 +130,12 @@ export default function Home() {
           }}
         />
       </header>
-      <main className="mt-5">
+      <main className="mt-5 sm:mt-10">
         {error && (
-          <div className="w-full flex justify-center items-center">
-            <div className="text-red-500">
-              {error.message ||
-                'We did not find any news. Try again with another category.'}
-            </div>
-          </div>
+          <ErrorMessage
+            error={error}
+            defaultErrorMessage="We did not find any news. Try again with another category."
+          />
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 mb-10">
@@ -153,11 +151,7 @@ export default function Home() {
           })}
         </div>
 
-        {isLoading && (
-          <div className="w-full flex justify-center items-center my-6">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-sky-400"></div>
-          </div>
-        )}
+        {isLoading && <Spinner />}
       </main>
     </div>
   );

@@ -1,3 +1,5 @@
+'use client';
+
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import type { MouseEvent } from 'react';
@@ -58,14 +60,16 @@ function NewsCard({
       onClick={handleRedirect}
     >
       <div className="border flex-1 p-4">
-        <span className="flex items-center text-gray-500 font-light text-xs">
+        <span className="flex items-center text-gray-500 font-light text-xs dark:text-gray-300">
           <AiOutlineClockCircle className="mr-2 text-xl" />
           {dayjs().to(dayjs(createdAt))} by {author}
         </span>
-        <h2 className="font-medium text-md mt-2 text-gray-700">{title}</h2>
+        <h2 className="font-medium text-md mt-2 text-gray-700 dark:text-gray-300">
+          {title}
+        </h2>
       </div>
       <div
-        className="relative w-[70px] [&>*]:text-red-500 [&>*]:cursor-pointer [&>*]:text-3xl bg-gray-100 [&>*]:absolute [&>*]:top-1/2 [&>*]:left-1/2 [&>*]:transform [&>*]:-translate-x-1/2 [&>*]:-translate-y-1/2"
+        className="relative w-[70px] [&>*]:text-red-500 [&>*]:cursor-pointer [&>*]:text-3xl bg-gray-100 dark:bg-gray-300 [&>*]:absolute [&>*]:top-1/2 [&>*]:left-1/2 [&>*]:transform [&>*]:-translate-x-1/2 [&>*]:-translate-y-1/2"
         onClick={(e: MouseEvent<HTMLDivElement>) => handleFavorite(e)}
       >
         <AiFillHeart className={isFav ? 'fav-active' : 'fav-inactive'} />
