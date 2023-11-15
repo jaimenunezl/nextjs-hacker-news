@@ -52,7 +52,7 @@ export async function getNews(
   category: string = '',
   page: number
 ): Promise<News[]> {
-  const url = new URL(process.env.NEXT_PUBLIC_API_HOST + '/search_by_sdate');
+  const url = new URL(process.env.NEXT_PUBLIC_API_HOST + '/search_by_date');
 
   if (category) {
     url.searchParams.append('query', category);
