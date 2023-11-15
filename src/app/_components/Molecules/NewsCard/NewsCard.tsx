@@ -1,12 +1,12 @@
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import type { MouseEvent } from 'react';
 import { useState } from 'react';
 import {
   AiFillHeart,
-  AiOutlineHeart,
   AiOutlineClockCircle,
+  AiOutlineHeart,
 } from 'react-icons/ai';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 

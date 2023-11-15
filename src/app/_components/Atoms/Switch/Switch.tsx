@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 type SwitchProps = {
   active: string;
   options: string[];
@@ -16,7 +14,6 @@ function Switch({ active, options = [], onChange }: Props) {
   return (
     <div>
       {options.map((option: string) => {
-        console.log(option, option === active);
         return (
           <span
             key={option}

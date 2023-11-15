@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa6';
+import { FaChevronDown, FaChevronUp, FaRegCircleXmark } from 'react-icons/fa6';
 
 type SelectProps = {
   placeholder: string;
@@ -20,11 +20,11 @@ function Select({
   const [currentValue, setCurrentValue] = useState('');
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    if (onChange) {
-      onChange(currentValue);
-    }
-  }, [currentValue, onChange]);
+  const handleSelect = (value: string) => {
+    setCurrentValue(value);
+    setShow(false);
+    onChange && onChange(value);
+  };
 
   useEffect(() => {
     if (valueSelected) {
@@ -39,12 +39,21 @@ function Select({
     >
       <div className="flex items-center justify-between">
         <input
-          id="select"
+          id="category-id"
           type="text"
           className="capitalize outline-none cursor-pointer placeholder:text-black"
           placeholder={placeholder}
           defaultValue={currentValue}
+          readOnly={true}
         />
+        {currentValue && (
+          <FaRegCircleXmark
+            onClick={(e: Event) => {
+              handleSelect('');
+              e.stopPropagation();
+            }}
+          />
+        )}
         {show ? <FaChevronUp /> : <FaChevronDown />}
       </div>
       <div
@@ -58,7 +67,7 @@ function Select({
             className={`w-full h-10 flex items-center hover:bg-sky-100 hover:text-black p-4 transition-colors capitalize ${
               value === currentValue ? 'bg-sky-100' : ''
             }    `}
-            onClick={() => setCurrentValue(key)}
+            onClick={() => handleSelect(key)}
           >
             {iconUrl && (
               <Image

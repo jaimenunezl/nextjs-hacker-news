@@ -1,43 +1,49 @@
 'use client';
 
-import { useEffect, useState, useCallback, useRef } from 'react';
-import { News, getNews } from '../../_services';
-import { NewsCard } from '../../_components';
+import { NewsCard } from '@/app/_components';
+import { useLocalStorage } from '@/app/_hooks';
+import { News } from '@/app/_services';
+import { LocalStorageKeys } from '@/app/_shared/enums';
+import { useCallback } from 'react';
 
 function Favorites() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [newsList, setNewsList] = useState<News[]>([]);
+  const { item: favList, updateItem: setFavList } = useLocalStorage<News[]>(
+    LocalStorageKeys.FAVORITE_NEWS,
+    []
+  );
 
   const handleRedirect = useCallback((url: string) => {
     window.open(url, '_blank');
   }, []);
 
-  const handleFavorite = useCallback((id: string, state: boolean) => {
-    console.log({ id, state });
-  }, []);
+  const handleFavorite = (id: string) => {
+    const newFavList = favList.filter((fav) => fav.id !== id);
+    setFavList(newFavList);
+  };
 
   return (
     <div>
       <main className="mt-5">
-        {isLoading && (
-          <div className="w-full flex justify-center items-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-sky-400"></div>
+        {favList.length === 0 && (
+          <div className="flex flex-col items-center justify-center w-full h-full">
+            <span className="text-2xl font-bold text-gray-700">
+              No favorites yet
+            </span>
           </div>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {!isLoading &&
-            newsList.map((news) => {
-              return (
-                <NewsCard
-                  key={news.id}
-                  isFavorite={false}
-                  {...news}
-                  onRedirect={handleRedirect}
-                  onFavorite={handleFavorite}
-                />
-              );
-            })}
+          {favList.map((news) => {
+            return (
+              <NewsCard
+                {...news}
+                key={news.id}
+                isFavorite={true}
+                onRedirect={handleRedirect}
+                onFavorite={handleFavorite}
+              />
+            );
+          })}
         </div>
       </main>
     </div>

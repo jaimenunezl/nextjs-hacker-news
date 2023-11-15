@@ -1,4 +1,3 @@
-import React from 'react';
 import { Baskervville } from 'next/font/google';
 
 const baskervville = Baskervville({

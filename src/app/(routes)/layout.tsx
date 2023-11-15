@@ -1,7 +1,7 @@
 'use client';
 
+import { Header, Switch } from '@/app/_components';
 import { usePathname, useRouter } from 'next/navigation';
-import { Header, Switch } from '../_components';
 import { useEffect, useState } from 'react';
 
 function LayoutPage({ children }: { children: React.ReactNode }) {
@@ -15,8 +15,6 @@ function LayoutPage({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    console.log(pathname);
-
     if (pathname.includes('favorites')) {
       setActive('my faves');
     } else {

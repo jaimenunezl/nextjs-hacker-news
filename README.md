@@ -29,7 +29,4 @@ npm run dev
 
 ## Pending
 
-- [ ] Save on local storage
 - [ ] Add tests
-- [ ] Show Fav page
-- [ ] Add pagination

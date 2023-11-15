@@ -20,6 +20,7 @@ export type News = {
   author: string;
   title: string;
   url: string;
+  isFavorite: boolean;
 };
 
 function mapNewsResponseToNewsDTO(newsResponse: NewsResponseDTO) {
@@ -42,6 +43,7 @@ function mapNewsResponseToNewsDTO(newsResponse: NewsResponseDTO) {
         author: author.value,
         title: story_title.value,
         url: story_url.value,
+        isFavorite: false,
       };
     });
 }
@@ -56,7 +58,7 @@ export async function getNews(
     url.searchParams.append('query', category);
   }
 
-  if (page) {
+  if (page >= 0) {
     url.searchParams.append('page', page.toString());
   }
 
