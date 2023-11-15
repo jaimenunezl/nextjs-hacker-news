@@ -25,14 +25,15 @@ function LayoutPage({ children }: { children: React.ReactNode }) {
   return (
     <div>
       <Header />
-      <div className="flex justify-center my-20">
+
+      <div className="flex items-center flex-col my-20">
         <Switch
           active={active}
           options={['all', 'my faves']}
           onChange={handleChange}
         />
+        <div className="w-11/12 max-w-7xl">{children}</div>
       </div>
-      <div className="px-2 lg:px-20">{children}</div>
     </div>
   );
 }

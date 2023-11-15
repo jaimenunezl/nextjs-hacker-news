@@ -8,8 +8,8 @@ const baskervville = Baskervville({
 
 function Header() {
   return (
-    <div className="bg-gradient-to-b from-[#ececec] to-[#ffffff] dark:from-black dark:to-black h-[7.125rem] flex items-center text-[1.75rem] shadow-sm">
-      <h1 className={baskervville.className + ' uppercase px-2 lg:px-20'}>
+    <div className="bg-gradient-to-b from-[#ececec] to-[#ffffff] dark:from-black dark:to-black h-[7.125rem] flex items-center text-[1.75rem] shadow-sm flex justify-center">
+      <h1 className={baskervville.className + ' uppercase w-11/12 max-w-7xl'}>
         hacker news
       </h1>
     </div>
