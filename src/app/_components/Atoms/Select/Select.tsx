@@ -37,11 +37,11 @@ function Select({
       className="relative cursor-pointer border border-black py-2 px-4 rounded-md select-none dark:border-white dark:border"
       onClick={() => setShow(!show)}
     >
-      <div className="flex items-center justify-between ">
+      <div className="flex items-center justify-between gap-1">
         <input
           id="category-id"
           type="text"
-          className="capitalize outline-none cursor-pointer placeholder:text-black dark:text-gray-300 dark:placeholder-white dark:bg-transparent"
+          className="capitalize outline-none cursor-pointer placeholder:text-black dark:text-gray-300 dark:placeholder-white dark:bg-transparent flex-1"
           placeholder={placeholder}
           defaultValue={currentValue}
           readOnly={true}
@@ -69,9 +69,9 @@ function Select({
         {options.map(({ key, value, iconUrl }) => (
           <span
             key={key}
-            className={`w-full h-10 flex items-center hover:bg-sky-100 hover:text-black p-4 transition-colors capitalize ${
+            className={`w-full h-10 flex items-center hover:bg-gray-100 hover:text-black p-4 transition-colors capitalize ${
               value === currentValue
-                ? 'bg-sky-100 dark:text-black'
+                ? 'bg-gray-100 dark:text-black'
                 : 'dark:text-gray-300'
             }    `}
             onClick={() => handleSelect(key)}

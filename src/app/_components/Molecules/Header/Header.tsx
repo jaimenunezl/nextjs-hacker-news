@@ -8,7 +8,7 @@ const baskervville = Baskervville({
 
 function Header() {
   return (
-    <div className="bg-gradient-to-b from-[#ececec] to-[#ffffff] dark:from-[#212121] dark:to-[#212121] h-[7.125rem] flex items-center text-[1.75rem] shadow-sm dark:shadow-white justify-center">
+    <div className="bg-gradient-to-b from-[#ececec] to-[#ffffff] dark:from-[#212121] dark:to-[#212121] h-[7.125rem] flex items-center text-[1.75rem] shadow-md dark:shadow-white justify-center">
       <h1
         className={
           baskervville.className +

@@ -48,10 +48,6 @@ Run the tests.
 npm run test
 ```
 
-## Pending
-
-- [ ] Add tests
-
 ## Live Demo
 
 [Live Site](https://nextjs-hacker-news-psi.vercel.app/)
