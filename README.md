@@ -54,4 +54,4 @@ npm run test
 
 ## Live Demo
 
-[Live Site](https://hacker-news-portal.vercel.app/)
+[Live Site](https://nextjs-hacker-news-psi.vercel.app/)
