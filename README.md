@@ -26,7 +26,7 @@ npm install
 
 Start the development server. The server will run on port 3000.
 
-[Localhost](http://localhost:3000)
+[Go to Localhost](http://localhost:3000)
 
 ```bash
 npm run dev
@@ -48,6 +48,6 @@ Run the tests.
 npm run test
 ```
 
-## Live Demo
+## Live Site
 
-[Live Site](https://nextjs-hacker-news-psi.vercel.app/)
+[Go to Live Site](https://nextjs-hacker-news-psi.vercel.app/)
