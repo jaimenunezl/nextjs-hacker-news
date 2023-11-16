@@ -4,19 +4,19 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { FaChevronDown, FaChevronUp, FaRegCircleXmark } from 'react-icons/fa6';
 
-type SelectProps = {
+type DropdownProps = {
   placeholder: string;
   options: Array<{ key: string; value: string; iconUrl?: string }>;
   valueSelected?: string;
   onChange?: (value: string) => void;
 };
 
-function Select({
+function Dropdown({
   placeholder,
   options = [],
   onChange,
   valueSelected,
-}: SelectProps) {
+}: DropdownProps) {
   const [currentValue, setCurrentValue] = useState('');
   const [show, setShow] = useState(false);
 
@@ -94,4 +94,4 @@ function Select({
   );
 }
 
-export default Select;
+export default Dropdown;

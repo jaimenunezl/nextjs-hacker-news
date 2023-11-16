@@ -1,6 +1,6 @@
 'use client';
 
-import { ErrorMessage, NewsCard, Select, Spinner } from '@/app/_components';
+import { ErrorMessage, NewsCard, Dropdown, Spinner } from '@/app/_components';
 import { useLocalStorage } from '@/app/_hooks';
 import { News, getNews } from '@/app/_services';
 import { LocalStorageKeys } from '@/app/_shared/enums';
@@ -113,7 +113,7 @@ export default function Home() {
   return (
     <div className="mt-10 sm:mt-20">
       <header className="w-full sm:w-[240px]">
-        <Select
+        <Dropdown
           placeholder="Select your news"
           options={[
             {

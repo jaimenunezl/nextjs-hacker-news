@@ -58,6 +58,7 @@ function NewsCard({
     <div
       className="border border-gray-400 rounded-lg flex cursor-pointer overflow-hidden hover:opacity-70 transition-opacity"
       onClick={handleRedirect}
+      data-testid="news-card"
     >
       <div className="border flex-1 p-4">
         <span className="flex items-center text-gray-500 font-light text-xs dark:text-gray-300">
@@ -71,9 +72,16 @@ function NewsCard({
       <div
         className="relative w-[70px] [&>*]:text-red-500 [&>*]:cursor-pointer [&>*]:text-3xl bg-gray-100 dark:bg-gray-300 [&>*]:absolute [&>*]:top-1/2 [&>*]:left-1/2 [&>*]:transform [&>*]:-translate-x-1/2 [&>*]:-translate-y-1/2"
         onClick={(e: MouseEvent<HTMLDivElement>) => handleFavorite(e)}
+        data-testid="fav-icon-container"
       >
-        <AiFillHeart className={isFav ? 'fav-active' : 'fav-inactive'} />
-        <AiOutlineHeart className={!isFav ? 'fav-active' : 'fav-inactive'} />
+        <AiFillHeart
+          className={isFav ? 'fav-active' : 'fav-inactive'}
+          data-testid="fav-icon-active"
+        />
+        <AiOutlineHeart
+          className={!isFav ? 'fav-active' : 'fav-inactive'}
+          data-testid="fav-icon-inactive"
+        />
       </div>
     </div>
   );

@@ -1,11 +1,12 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import Switch from './Switch';
 import '@testing-library/jest-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
+import Switch from './Switch';
 
 describe('Switch', () => {
   it('should render a Switch', () => {
     const props = {
       options: ['angular', 'react'],
+      active: 'react',
     };
 
     render(<Switch {...props} />);
@@ -18,6 +19,7 @@ describe('Switch', () => {
   it('should render all options', () => {
     const props = {
       options: ['angular', 'react'],
+      active: 'react',
     };
 
     render(<Switch {...props} />);

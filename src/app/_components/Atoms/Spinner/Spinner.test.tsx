@@ -7,7 +7,7 @@ describe('Spinner', () => {
     const spinner = render(<Spinner />);
 
     expect(
-      spinner.container.firstElementChild.children[0].classList.toString()
+      spinner.container.firstElementChild?.children[0].classList.toString()
     ).toMatch('animate-spin');
   });
 });

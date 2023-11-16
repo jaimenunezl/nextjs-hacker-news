@@ -1,28 +1,28 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
-import Select from './Select';
+import Dropdown from './Dropdown';
 
-describe('Select', () => {
-  it('should render a select', () => {
+describe('Dropdown', () => {
+  it('should render a Dropdown', () => {
     const props = {
       placeholder: 'seleccione',
       options: [{ key: 'react', value: 'react' }],
     };
 
-    render(<Select {...props} />);
+    render(<Dropdown {...props} />, {});
 
     const input = screen.getByPlaceholderText('seleccione');
 
     expect(input).toBeTruthy();
   });
 
-  it('should render the select options', () => {
+  it('should render the Dropdown options', () => {
     const props = {
       placeholder: 'seleccione',
       options: [{ key: 'react', value: 'react' }],
     };
 
-    render(<Select {...props} />);
+    render(<Dropdown {...props} />, {});
 
     const input = screen.getByText('react');
 
@@ -38,7 +38,7 @@ describe('Select', () => {
       onChange,
     };
 
-    render(<Select {...props} />);
+    render(<Dropdown {...props} />);
 
     fireEvent.click(screen.getByText('angular'));
 
@@ -51,11 +51,11 @@ describe('Select', () => {
       options: [{ key: 'vue', value: 'vue' }],
     };
 
-    render(<Select {...props} />);
+    render(<Dropdown {...props} />);
 
     fireEvent.click(screen.getByText('vue'));
 
-    const input = screen.getByPlaceholderText('seleccione');
+    const input = screen.getByPlaceholderText<HTMLInputElement>('seleccione');
 
     expect(input.value).toBe('vue');
   });

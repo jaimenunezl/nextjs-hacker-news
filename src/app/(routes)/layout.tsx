@@ -11,7 +11,7 @@ function LayoutPage({ children }: { children: React.ReactNode }) {
 
   const handleChange = (value: string) => {
     setActive(value);
-    router.push(value === 'all' ? '/' : '/favorites');
+    router.push(value === 'all' ? '/home' : '/favorites');
   };
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-export { default as Select } from './Atoms/Select/Select';
+export { default as Dropdown } from './Atoms/Dropdown/Dropdown';
 export { default as Spinner } from './Atoms/Spinner/Spinner';
 export { default as Switch } from './Atoms/Switch/Switch';
 export * from './Atoms';
